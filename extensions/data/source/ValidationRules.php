@@ -11,7 +11,7 @@ class ValidationRules
     /**
      * @var boolean
      */
-    protected $status;
+    protected static $status;
     /**
      * validate persian alphabet and space
      * @param $attribute
@@ -20,10 +20,10 @@ class ValidationRules
      * @since May 21, 2016
      * @return boolean
      */
-    public function Alpha($attribute, $value)
+    public static function Alpha($attribute, $value)
     {
-        $this->status = (bool) preg_match("/^[\x{600}-\x{6FF}\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}\s]+$/u", $value);
-        return $this->status ;
+        self::$status = (bool) preg_match("/^[\x{600}-\x{6FF}\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}\s]+$/u", $value);
+        return self::$status ;
     }
     /**
      * validate persian number
@@ -33,10 +33,10 @@ class ValidationRules
      * @since May 21, 2016
      * @return boolean
      */
-    public function Num($attribute, $value)
+    public static function Num($attribute, $value)
     {
-        $this->status = (bool) preg_match('/^[\x{6F0}-\x{6F9}]+$/u', $value);
-        return $this->status ;
+        self::$status = (bool) preg_match('/^[\x{6F0}-\x{6F9}]+$/u', $value);
+        return self::$status ;
     }
     /**
      * validate persian alphabet, number and space
@@ -46,10 +46,10 @@ class ValidationRules
      * @since May 21, 2016
      * @return boolean
      */
-    public function AlphaNum($attribute, $value)
+    public static function AlphaNum($attribute, $value)
     {
-        $this->status = (bool) preg_match('/^[\x{600}-\x{6FF}\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}\s]+$/u', $value);
-        return $this->status;
+        self::$status = (bool) preg_match('/^[\x{600}-\x{6FF}\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}\s]+$/u', $value);
+        return self::$status;
     }
     /**
      * validate mobile number
@@ -59,7 +59,7 @@ class ValidationRules
      * @since May 21, 2016
      * @return boolean
      */
-    public function IranMobile($attribute, $value)
+    public static function IranMobile($attribute, $value)
     {
         if ((bool) preg_match('/^(((98)|(\+98)|(0098)|0)(9){1}[0-9]{9})+$/', $value) || (bool) preg_match('/^(9){1}[0-9]{9}+$/', $value))
             return true;
@@ -73,7 +73,7 @@ class ValidationRules
      * @since May 21, 2016
      * @return boolean
      */
-    public function Sheba($attribute, $value)
+    public static function Sheba($attribute, $value)
     {
         $ibanReplaceValues = array();
         if (!empty($value)) {
@@ -108,7 +108,7 @@ class ValidationRules
      * @since May 21, 2016
      * @return boolean
      */
-    public function MelliCode($attribute, $value)
+    public static function MelliCode($attribute, $value)
     {
         if (!preg_match('/^\d{8,10}$/', $value) || preg_match('/^[0]{10}|[1]{10}|[2]{10}|[3]{10}|[4]{10}|[5]{10}|[6]{10}|[7]{10}|[8]{10}|[9]{10}$/', $value)) {
             return false;
@@ -141,11 +141,11 @@ class ValidationRules
      * @since June 13, 2016
      * @return boolean
      */
-    public function IsNotPersian($attribute, $value)
+    public static function IsNotPersian($attribute, $value)
     {
         if (is_string($value)) {
-            $this->status = (bool) preg_match("/[\x{600}-\x{6FF}]/u", $value);
-            return !$this->status;
+            self::$status = (bool) preg_match("/[\x{600}-\x{6FF}]/u", $value);
+            return !self::$status;
         }
         return false;
     }
@@ -158,7 +158,7 @@ class ValidationRules
      * @since June 13, 2016
      * @return boolean
      */
-    public function LimitedArray($attribute, $value, $parameters)
+    public static function LimitedArray($attribute, $value, $parameters)
     {
         if (is_array($value)) {
             if (isset($parameters[0])) {
@@ -177,9 +177,9 @@ class ValidationRules
      * @since July 22, 2016
      * @return boolean
      */
-    public function UnSignedNum($attribute, $value) {
-        $this->status = (bool) preg_match('/^\d+$/', $value);
-        return $this->status;
+    public static function UnSignedNum($attribute, $value) {
+        self::$status = (bool) preg_match('/^\d+$/', $value);
+        return self::$status;
     }
     /**
      * validate alphabet and spaces
@@ -189,10 +189,10 @@ class ValidationRules
      * @since Agu 3, 2016
      * @return boolean
      */
-    public function AlphaSpace($attribute, $value)
+    public static function AlphaSpace($attribute, $value)
     {
-        $this->status = (bool) preg_match("/^[\pL\s\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}]+$/u", $value);
-        return $this->status;
+        self::$status = (bool) preg_match("/^[\pL\s\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}]+$/u", $value);
+        return self::$status;
     }
     /**
      * validate Url
@@ -202,10 +202,10 @@ class ValidationRules
      * @since Agu 17, 2016
      * @return boolean
      */
-    public function Url($attribute, $value)
+    public static function Url($attribute, $value)
     {
-        $this->status = (bool) preg_match("/^(HTTP|http(s)?:\/\/(www\.)?[A-Za-z0-9]+([\-\.]{1,2}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?)$/", $value);
-        return $this->status;
+        self::$status = (bool) preg_match("/^(HTTP|http(s)?:\/\/(www\.)?[A-Za-z0-9]+([\-\.]{1,2}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?)$/", $value);
+        return self::$status;
     }
     /**
      * validate Domain
@@ -215,10 +215,10 @@ class ValidationRules
      * @since Agu 17, 2016
      * @return boolean
      */
-    public function Domain($attribute, $value)
+    public static function Domain($attribute, $value)
     {
-        $this->status = (bool) preg_match("/^((www\.)?(\*\.)?[A-Za-z0-9]+([\-\.]{1,2}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?)$/", $value);
-        return $this->status;
+        self::$status = (bool) preg_match("/^((www\.)?(\*\.)?[A-Za-z0-9]+([\-\.]{1,2}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?)$/", $value);
+        return self::$status;
     }
     /**
      * value must be more than parameters
@@ -229,7 +229,7 @@ class ValidationRules
      * @since Agu 24, 2016
      * @return boolean
      */
-    public function More($attribute, $value, $parameters)
+    public static function More($attribute, $value, $parameters)
     {
         if ( isset( $parameters[0] ) ) {
             return ( $value > $parameters[0] ? true : false );
@@ -245,7 +245,7 @@ class ValidationRules
      * @since Agu 24, 2016
      * @return boolean
      */
-    public function Less($attribute, $value, $parameters)
+    public static function Less($attribute, $value, $parameters)
     {
         if ( isset( $parameters[0] ) ) {
             return ( $value < $parameters[0] ? true : false );
@@ -260,10 +260,10 @@ class ValidationRules
      * @since Agu 24, 2016
      * @return boolean
      */
-    public function IranPhone($attribute, $value)
+    public static function IranPhone($attribute, $value)
     {
-        $this->status = (bool) preg_match('/^[2-9][0-9]{7}+$/', $value) ;
-        return $this->status;
+        self::$status = (bool) preg_match('/^[2-9][0-9]{7}+$/', $value) ;
+        return self::$status;
     }
     /**
      * payment card number validation
@@ -275,7 +275,7 @@ class ValidationRules
      * @since Oct 1, 2016
      * @return boolean
      */
-    function CardNumber($attribute, $value)
+    public static function CardNumber($attribute, $value)
     {
         if(!preg_match('/^\d{16}$/', $value)){
             return false;
@@ -289,6 +289,7 @@ class ValidationRules
         }
         return (bool)($sum % 10 === 0);
     }
+
     /**
      * validate alphabet, number and some special characters
      * @param $attribute
@@ -297,11 +298,12 @@ class ValidationRules
      * @since Oct 7, 2016
      * @return boolean
      */
-    public function Address($attribute, $value)
+    public static function Address($attribute, $value)
     {
-        $this->status = (bool) preg_match("/^[\pL\s\d\-\/\,\،\.\\\\\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}\x{6F0}-\x{6F9}]+$/u", $value);
-        return $this->status;
+        self::$status = (bool) preg_match("/^[\pL\s\d\-\/\,\،\.\\\\\x{200c}\x{064b}\x{064d}\x{064c}\x{064e}\x{064f}\x{0650}\x{0651}\x{6F0}-\x{6F9}]+$/u", $value);
+        return self::$status;
     }
+
     /**
      * validate Iran postal code format
      * @param $attribute
@@ -310,9 +312,9 @@ class ValidationRules
      * @since Apr 5, 2017
      * @return boolean
      */
-    public function IranPostalCode($attribute, $value)
+    public static function IranPostalCode($attribute, $value)
     {
-        $this->status = (bool) preg_match("/^(\d{5}-?\d{5})$/", $value);
-        return $this->status;
+        self::$status = (bool) preg_match("/^(\d{5}-?\d{5})$/", $value);
+        return self::$status;
     }
 }
