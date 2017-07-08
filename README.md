@@ -16,7 +16,7 @@ Laravel Persian Validation is open-sourced software licensed under the [BSD lice
 Clone it from github and put it inside your `libraries` folder:
 
 ``` bash
-$ composer require Anetwork/Validation
+$ git clone https://github.com/alihesari/li3_validation.git
 ```
 
 ## Config
