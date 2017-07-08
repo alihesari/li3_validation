@@ -31,6 +31,13 @@ Validator::add('persianAlphaNum', function($value) {
 });
 
 /**
+ * validate alphabet and spaces
+ */
+Validator::add('alphaSpace', function($value) {
+    return ValidationRules::AlphaSpace(null, $value);
+});
+
+/**
  * validate Iranian mobile number
  */
 Validator::add('iranMobile', function($value) {
@@ -77,13 +84,6 @@ Validator::add('iranPostalCode', function($value) {
  */
 Validator::add('persianAddress', function($value) {
     return ValidationRules::Address(null, $value);
-});
-
-/**
- * validate alphabet and spaces
- */
-Validator::add('alphaSpace', function($value) {
-    return ValidationRules::AlphaSpace(null, $value);
 });
 
 /**
