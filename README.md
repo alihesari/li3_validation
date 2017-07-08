@@ -2,18 +2,13 @@
 
 Lithium Persian Validation provides validation for Persian alphabet, number and etc.
 
-## Requirement
-
-* Laravel 5.*
-* PHP 5.5 >=
-
 ## License
 
-Laravel Persian Validation is open-sourced software licensed under the [BSD license](http://opensource.org/licenses/bsd-license.php)
+Lithium Persian Validation is open-sourced software licensed under the [BSD license](http://opensource.org/licenses/bsd-license.php)
 
 ## Install
 
-Clone it from github and put it inside your `libraries` folder:
+Clone it from Github and put it inside your `libraries` folder:
 
 ``` bash
 $ git clone https://github.com/alihesari/li3_validation.git
