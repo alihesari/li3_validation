@@ -14,6 +14,11 @@ Clone it from Github and put it inside your `libraries` folder:
 $ git clone https://github.com/alihesari/li3_validation.git
 ```
 
+Via Composer
+
+``` bash
+composer require alihesari/li3_validation
+```
 ## Config
 
 Add the following line in your `config/bootstrap/libraries.php`:
