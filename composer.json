@@ -1,0 +1,11 @@
+{
+  "name": "alihesari/li3_validation",
+  "type": "lithium-library",
+  "description": "Lithium Persian Validation provides validation for Persian alphabet, number and etc.",
+  "keywords": ["lithium", "validation", "validator", "li3","php","persian","persian-validation"],
+  "homepage": "https://github.com/alihesari/li3_validation",
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4"
+  }
+}
